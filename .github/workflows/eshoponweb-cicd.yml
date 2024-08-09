@@ -81,10 +81,10 @@ jobs:
     - name: deploy
       uses: azure/arm-deploy@v2
       with:
-        subscriptionId: ${{ env.SUBSCRIPTION-ID }}
-        resourceGroupName: ${{ env.RESOURCE-GROUP }}
+        subscriptionId: ${{ env.60f5831a-b166-419b-bf2c-dc093c980dd8 }}
+        resourceGroupName: ${{ env.rg-eshoponweb-eshopweb }}
         template: bicep-template/webapp.bicep
-        parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+        parameters: 'webAppName=${{ env.eshoponweb-webapp-WEB01 }} location=${{ env.eastus }}'
         failOnStdErr: false   
     
     # Publish website to Azure App Service (WebApp)
@@ -94,7 +94,7 @@ jobs:
       uses: Azure/webapps-deploy@v3
       with:
         type: ZIP
-        app-name: ${{ env.WEBAPP-NAME  }}
+        app-name: ${{ env.}}
         package: .net-app/app.zip
 
     # Publish website to Azure App Service using CLI (WebApp)
@@ -102,4 +102,4 @@ jobs:
       uses: Azure/cli@v2
       with:
         inlineScript: |
-             az webapp deploy --name ${{ env.WEBAPP-NAME }} --resource-group ${{ env.RESOURCE-GROUP }} --src-path .net-app/app.zip --type zip
+             az webapp deploy --name ${{ env.eshoponweb-webapp-WEB01}} --resource-group ${{ env.rg-eshoponweb-eshopweb }} --src-path .net-app/app.zip --type zip
